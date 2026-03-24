@@ -1,4 +1,4 @@
-# WeChat Tech Writer
+# WeChat Article Writer
 
 微信公众号技术文章自动生成工具 - 从选题到发布的完整自动化流程。
 
@@ -16,7 +16,7 @@
 ## 🏗️ 项目结构
 
 ```
-wechat-tech-writer/
+wechat-article-writer/
 ├── generate.py              # 主生成脚本
 ├── SKILL.md                 # 完整技能文档（OpenClaw 格式）
 ├── EXAMPLES.md              # 使用示例
