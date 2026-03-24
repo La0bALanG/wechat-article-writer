@@ -41,8 +41,8 @@ wechat-tech-writer/
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/La0bALanG/wechat-tech-writer.git
-cd wechat-tech-writer
+git clone https://github.com/La0bALanG/wechat-article-writer.git
+cd wechat-article-writer
 ```
 
 ### 2. 安装依赖
