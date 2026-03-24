@@ -111,7 +111,7 @@ def extract_title_from_md(md_content):
 
 def format_markdown_with_ziliu(md_content):
     """使用 ziliu.online API 对 Markdown 文章进行智能排版"""
-    ziliu_api_key = "ziliu_sk_c4b261c7cde04b3ac0d44ab16c216bf1f2bc1b1fd2ae1b8c"
+    ziliu_api_key = os.environ.get("ZILIU_API_KEY", "your_ziliu_api_key_here")
     url = "https://ziliu.online/api/convert"
     headers = {
         "Authorization": f"Bearer {ziliu_api_key}",
