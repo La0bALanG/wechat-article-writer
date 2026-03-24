@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# 环境变量（包含敏感信息）
+.env
+
+# 缓存文件
+.wechat_access_token.json
+
+# 生成文件
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.md
+!EXAMPLES.md
+!SKILL.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
