@@ -3,6 +3,10 @@
 """
 企业微信自建应用发送文件工具
 
+配置方式（二选一）：
+    1. 环境变量：设置 WECOM_CORP_ID, WECOM_CORP_SECRET, WECOM_AGENT_ID
+    2. .env 文件：复制 .env.example 为 .env 并填入真实值
+
 用法:
     python wecom_send_file.py --file /path/to/file.jpg
     python wecom_send_file.py --file /path/to/file.pdf --user yutian-anweichao
@@ -14,14 +18,30 @@ import os
 import requests
 import sys
 from urllib.parse import quote
+from dotenv import load_dotenv
 
-# 企业微信配置
-CORP_ID = "ww978049e5b0a2e29d"
-CORP_SECRET = "DYXhAPykd95wO1D7zdGqbftepR6jp92k-LTkCDsHuj8"
-AGENT_ID = 1000126
+# 加载 .env 文件
+load_dotenv()
+
+# 企业微信配置（从环境变量读取）
+CORP_ID = os.getenv("WECOM_CORP_ID", "")
+CORP_SECRET = os.getenv("WECOM_CORP_SECRET", "")
+AGENT_ID = int(os.getenv("WECOM_AGENT_ID", "0"))
 
 # API 地址
 API_BASE = "https://qyapi.weixin.qq.com"
+
+
+def check_config():
+    """检查配置是否完整"""
+    if not CORP_ID or not CORP_SECRET or not AGENT_ID:
+        print("❌ 配置错误：请设置环境变量")
+        print("   WECOM_CORP_ID: 企业ID")
+        print("   WECOM_CORP_SECRET: 应用Secret")
+        print("   WECOM_AGENT_ID: 应用ID")
+        print("\n   或在脚本目录创建 .env 文件")
+        return False
+    return True
 
 
 def get_access_token():
@@ -158,6 +178,10 @@ def main():
     parser.add_argument("--user", "-u", default="@all", help="接收用户ID，默认 @all")
     
     args = parser.parse_args()
+    
+    # 检查配置
+    if not check_config():
+        sys.exit(1)
     
     success = send_file_message(args.file, args.user)
     sys.exit(0 if success else 1)
